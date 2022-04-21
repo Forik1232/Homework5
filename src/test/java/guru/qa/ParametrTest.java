@@ -1,18 +1,17 @@
 package guru.qa;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+
 
 @DisplayName("Параметровизованные тесты")
 public class ParametrTest {
@@ -32,7 +31,7 @@ public class ParametrTest {
         $("#q").click();
         $("#q").setValue(testData);
         $("#q").pressEnter();
-        $$("#js-kb-col-center").find(Condition.text(testData)).shouldBe(Condition.visible);
+        $$("#js-kb-col-center").find(text(testData)).shouldBe(Condition.visible);
 
     }
 
@@ -47,7 +46,16 @@ public class ParametrTest {
         $("#q").setValue(testData);
         $("#q").pressEnter();
 
-        $$("#js-kb-col-center").find(Condition.text(expectedResult)).shouldBe(Condition.visible);
+        $$("#js-kb-col-center").shouldHave(text(expectedResult));
+
+
+       
+
+
+
+
+
+
 
     }
 
